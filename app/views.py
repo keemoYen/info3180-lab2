@@ -37,7 +37,7 @@ def send_text_file(file_name):
 
 @app.route('/profile')
 def profile():
-    return render_template('profile.html')
+    return render_template('profile.html',date = format_date_joined())
 
 
 @app.after_request
@@ -58,6 +58,8 @@ def page_not_found(error):
     return render_template('404.html'), 404
 
 
+def format_date_joined():
+    return datetime.datetime.now().strftime("%B,%Y")
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0", port="8080")
